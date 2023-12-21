@@ -4,9 +4,10 @@ const scriptContainer = document.querySelector("#script-c");
 const start = document.querySelector("#start");
 
 function runTimer() {
-    let time = 91;
+    let time = 90;
     let failed = false;
     const timer = document.querySelector("#timer");
+    const failDesc = document.querySelector("#fail");
     const min = document.querySelector("#min");
     const sec = document.querySelector("#sec");
     const text = document.querySelector("#text");
@@ -16,6 +17,7 @@ function runTimer() {
     document.onkeydown = null;
     document.onclick = null;
     timer.classList.remove("fail");
+    failDesc.classList.add("invisible");
 
     const lines = {
         90: "파도 소리에 집중하며 외부 자극에 버티며<br>1분 30초 동안 가만히 있어 보세요",
@@ -30,13 +32,15 @@ function runTimer() {
         0: "‘다함께뇌운동’ 사전예약하고 1,000원 선물 받으세요."
     };
 
-    (function tick() {
-        if (failed) return;
-
-        --time;
+    function renderTimer() {
         min.innerText = Math.floor(time/60);
         sec.innerText = ((time % 60) + "").padStart(2, '0');
-        
+    }
+
+    function tick() {
+        if (failed) return;
+        --time;
+        renderTimer();
 
         if (lines[time] !== undefined) {
             text.innerHTML = lines[time];
@@ -47,13 +51,28 @@ function runTimer() {
         // when it reaches 0
 
         link.classList.remove("hidden");
-    })();
+    }
+    tick();
 
+    let wait = 0;
     function fail() {
-        if (failed || time === 0) return;
+        if (failed) return wait = 0;
+        if (time === 0) return;
+        time = 90;
         failed = true;
 
-        timer.classList.add('fail');
+        renderTimer();
+
+        timer.classList.add("fail");
+        failDesc.classList.remove("invisible");
+
+        const delay = 20;
+        (function checkNoMove() {
+            if (failed && wait > 1000) return runTimer();
+            wait += delay;
+            
+            setTimeout(checkNoMove, delay);
+        })();
     }
     
     setTimeout(() => {

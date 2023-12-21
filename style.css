@@ -43,7 +43,7 @@ body {
 }
 
 body::before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     min-width: 100vw;
@@ -77,8 +77,8 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .panel {
-    max-width: calc(80vw - 100px);
-    padding: 30px 60px;
+    max-width: calc(80vw - 60px);
+    padding: 20px 40px;
 }
 
 .panel * {
@@ -94,6 +94,18 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .timer {
-    display: inline;
+    /* display: inline; */
     margin-bottom: 1em;
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.timer.fail {
+    color: red;
+}
+
+.timer.fail::before {
+    content: "다시 도전해보세요";
+    display: inline;
 }

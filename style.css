@@ -1,0 +1,99 @@
+* {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    flex-direction: column;
+    font-size: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+    user-select: none;
+    border: none;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    margin: 0;
+    padding: 0;
+    word-break: keep-all;
+    letter-spacing: .02em;
+    line-height: 160%;
+    outline: 0;
+}
+
+body, div {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100vh;
+    height: 100%;
+    touch-action: none;
+}
+
+body {
+    background-color: white;
+    min-height: 100%;
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    letter-spacing: -.01em;
+
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    display: block;
+    position: absolute;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    aspect-ratio: 1.5;
+    z-index: -1;
+}
+
+
+
+.hidden {
+    display: none !important;
+    visibility: collapse !important;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+.button, .panel {
+    border: black solid 1px;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.panel {
+    max-width: calc(80vw - 100px);
+    padding: 30px 60px;
+}
+
+.panel * {
+    color: black;
+}
+
+.button {
+    padding: .2em 1em;
+    background-color: palevioletred;
+    color: white;
+    
+    margin-top: 1em;
+}
+
+.timer {
+    display: inline;
+    margin-bottom: 1em;
+}

@@ -35,16 +35,15 @@ function runTimer() {
     function renderTimer() {
         min.innerText = Math.floor(time/60);
         sec.innerText = ((time % 60) + "").padStart(2, '0');
+        if (lines[time] !== undefined) {
+            text.innerHTML = lines[time];
+        }
     }
 
     function tick() {
         if (failed) return;
         --time;
         renderTimer();
-
-        if (lines[time] !== undefined) {
-            text.innerHTML = lines[time];
-        }
 
         if (time > 0) return setTimeout(tick, 1000);
 
